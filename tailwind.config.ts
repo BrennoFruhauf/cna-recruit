@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss';
+import type { Config } from "tailwindcss"
 
 const config: Config = {
   content: [
@@ -9,10 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          light: "#FFD3D3",
-          default: "#ED1941",
-        },
+        primary: "#ED1941",
         secondary: "#212359",
         croma: {
           "0": "#FFFFFF",
@@ -22,6 +19,9 @@ const config: Config = {
           "300": "#575757",
           "400": "#1B1B1B",
         },
+      },
+      screens: {
+        container: "1440px",
       },
     },
   },
