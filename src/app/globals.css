@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer utilities {
-  .max-w-content {
-    @apply max-w-screen-container mx-auto px-5;
+  .max-content {
+    @apply max-w-screen-container mx-auto;
   }
 }
