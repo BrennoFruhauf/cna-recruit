@@ -11,7 +11,8 @@ const pageInfo = {
   description:
     "Junte-se ao time de educadores do CNA! Estamos em busca de professores de inglês qualificados e dedicados.",
   authorName: "CNA",
-  slogan: "JÁ SE IMAGINOU FAZENDO PARTE DA FAMÍLIA CNA?",
+  slogan:
+    "JÁ SE IMAGINOU FAZENDO PARTE DA FAMÍLIA CNA COMO PROFESSOR DE INGLÊS?",
 }
 
 const pagesLinks = {

@@ -34,9 +34,9 @@ export const RecruitForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="p-10 rounded-md bg-croma-50 flex flex-col gap-4 max-w-[600px]"
+        className="p-8 sm:p-10 rounded-md bg-croma-50 flex flex-col gap-4 max-w-[600px] justify-self-end drop-shadow-lg"
       >
-        <h2 className="text-center text-croma-400 text-lg">
+        <h2 className="text-center text-croma-400 text-base sm:text-lg leading-5">
           Seja a próxima estrela do{" "}
           <span className="text-primary font-medium">CNA</span>: Inscreva-se
           agora e transforme sua carreira!
@@ -75,6 +75,7 @@ export const RecruitForm = () => {
                 <Input
                   {...field}
                   id="email"
+                  type="email"
                   placeholder="Insira seu e-mail principal"
                   autoComplete="off"
                 />
@@ -93,7 +94,12 @@ export const RecruitForm = () => {
                 Celular
               </FormLabel>
               <FormControl>
-                <InputMask mask="(99) \9 9999 9999" id="phone" {...field}>
+                <InputMask
+                  mask="(99) \9 9999 9999"
+                  id="phone"
+                  inputMode="numeric"
+                  {...field}
+                >
                   <Input autoComplete="off" placeholder="(__) 9 ____ ____" />
                 </InputMask>
               </FormControl>
@@ -136,6 +142,8 @@ export const RecruitForm = () => {
                 <Textarea
                   id="message"
                   placeholder="Faça uma breve apresentação sobre você..."
+                  maxLength={500}
+                  className="max-h-56"
                   {...field}
                 />
               </FormControl>
@@ -150,6 +158,17 @@ export const RecruitForm = () => {
         >
           Enviar
         </Button>
+
+        <p className="text-xs font-light text-croma-400">
+          O CNA respeita a sua privacidade e protege seus dados pessoais
+          conforme nossa{" "}
+          <a
+            className="underline"
+            href="https://www.cna.com.br/politica-de-privacidade"
+          >
+            Política de Privacidade
+          </a>
+        </p>
       </form>
     </Form>
   )
