@@ -1,5 +1,7 @@
 "use client"
 
+import { useReducer } from "react"
+
 import { useForm } from "react-hook-form"
 
 import { Button } from "@/components/ui/button"
@@ -16,9 +18,13 @@ import { Textarea } from "@/components/ui/textarea"
 import { zodResolver } from "@hookform/resolvers/zod"
 import InputMask from "@mona-health/react-input-mask"
 
+import { MyAlert } from "../Alert"
 import { defaultValues, formSchema, FormType } from "./formSchema"
+import { initialState, reducer } from "./state"
 
 export const RecruitForm = () => {
+  const [state, dispatch] = useReducer(reducer, initialState)
+
   const form = useForm<FormType>({
     resolver: zodResolver(formSchema),
     defaultValues,
@@ -26,8 +32,34 @@ export const RecruitForm = () => {
 
   const fileRef = form.register("file")
 
-  const onSubmit = (data: FormType) => {
-    console.log(data)
+  async function onSubmit(data: FormType) {
+    dispatch({ type: "SUBMIT_START" })
+
+    const formData = new FormData()
+    formData.append("name", data.name)
+    formData.append("email", data.email)
+    formData.append("phone", data.phone)
+    formData.append("file", data.file)
+    formData.append("message", data.message)
+
+    const response = await fetch("/api", {
+      method: "POST",
+      body: formData,
+    })
+
+    const result = await response.json()
+    const statusCode = response.status
+
+    dispatch({
+      payload: { message: result.message, status: statusCode },
+      type: "SUBMIT_CONCLUDED",
+    })
+
+    if (statusCode === 200) form.reset()
+
+    setTimeout(() => {
+      dispatch({ type: "HIDE_ALERT" })
+    }, 10000)
   }
 
   return (
@@ -155,8 +187,9 @@ export const RecruitForm = () => {
         <Button
           className="font-semibold bg-primary hover:bg-primary-hover transition-colors"
           type="submit"
+          disabled={state.isSubmitting}
         >
-          Enviar
+          {state.isSubmitting ? "Enviando..." : "Enviar"}
         </Button>
 
         <p className="text-xs font-light text-croma-400">
@@ -170,6 +203,14 @@ export const RecruitForm = () => {
           </a>
         </p>
       </form>
+
+      {state.alertVisible ||
+        (true && (
+          <MyAlert
+            message={state.alertContent.message}
+            status={state.alertContent.status}
+          />
+        ))}
     </Form>
   )
 }
