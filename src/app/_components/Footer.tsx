@@ -22,13 +22,13 @@ export const Footer = () => {
 
         <motion.ul
           variants={smoothVariants}
-          className="text-croma-100 font-medium flex flex-col basis-full gap-2 text-xl sm:text-base sm:basis-0 sm:flex-row"
+          className="text-croma-200 font-medium flex flex-col basis-full gap-2 text-xl sm:text-base sm:basis-0 sm:flex-row"
         >
           {pagesLinks.links.map((item) => (
             <motion.li
               variants={smoothVariants}
               key={item.name}
-              className="mr-4 text-nowrap"
+              className="mr-4 text-nowrap transition-colors hover:text-croma-0"
             >
               <a href={item.link}>{item.name}</a>
             </motion.li>
@@ -43,7 +43,7 @@ export const Footer = () => {
             <motion.li
               variants={smoothVariants}
               key={item.name}
-              className="text-croma-100"
+              className="text-croma-200 transition-colors hover:text-croma-0"
             >
               <a href={item.link} title={`Siga no ${item.name}`}>
                 <item.icon className="text-2xl sm:text-xl" />
