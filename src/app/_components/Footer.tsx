@@ -45,7 +45,11 @@ export const Footer = () => {
               key={item.name}
               className="text-croma-200 transition-colors hover:text-croma-0"
             >
-              <a href={item.link} title={`Siga no ${item.name}`}>
+              <a
+                href={item.link}
+                target="_blank"
+                title={`Siga no ${item.name}`}
+              >
                 <item.icon className="text-2xl sm:text-xl" />
               </a>
             </motion.li>
