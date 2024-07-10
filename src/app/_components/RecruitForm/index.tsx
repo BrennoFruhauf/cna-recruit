@@ -1,6 +1,6 @@
 "use client"
 
-import { useReducer } from "react"
+import { useReducer, useRef } from "react"
 
 import { useForm } from "react-hook-form"
 
@@ -24,6 +24,7 @@ import { initialState, reducer } from "./state"
 
 export const RecruitForm = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
+  const timeoutRef = useRef<number | null>(null)
 
   const form = useForm<FormType>({
     resolver: zodResolver(formSchema),
@@ -57,9 +58,14 @@ export const RecruitForm = () => {
 
     if (statusCode === 200) form.reset()
 
-    setTimeout(() => {
+    timeoutRef.current = window.setTimeout(() => {
       dispatch({ type: "HIDE_ALERT" })
     }, 10000)
+  }
+
+  const handleCloseAlert = () => {
+    dispatch({ type: "HIDE_ALERT" })
+    if (timeoutRef.current) clearTimeout(timeoutRef.current)
   }
 
   return (
@@ -204,13 +210,16 @@ export const RecruitForm = () => {
         </p>
       </form>
 
-      {state.alertVisible ||
-        (true && (
+      {state.alertVisible && (
+        <div className="fixed top-0 left-1/2 -translate-x-1/2 mt-28 w-full px-5">
           <MyAlert
+            className="shadow-lg max-w-[600px] mx-auto"
             message={state.alertContent.message}
             status={state.alertContent.status}
+            onClose={handleCloseAlert}
           />
-        ))}
+        </div>
+      )}
     </Form>
   )
 }
