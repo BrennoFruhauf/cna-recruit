@@ -8,7 +8,7 @@ import { emailTemplate } from "./_functions/emailTemplate"
 const optionsMailer: SMTPTransport.Options = {
   host: process.env.EMAIL_HOST,
   port: Number(process.env.EMAIL_PORT),
-  secure: false,
+  secure: Boolean(process.env.EMAIL_SECURE),
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
