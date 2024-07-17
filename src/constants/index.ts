@@ -13,6 +13,8 @@ const pageInfo = {
   authorName: "CNA",
   slogan:
     "JÁ SE IMAGINOU FAZENDO PARTE DA FAMÍLIA CNA COMO PROFESSOR DE INGLÊS?",
+  locale: "pt_BR",
+  url: "recruit.cnacatalao.com.br"
 }
 
 const pagesLinks = {
