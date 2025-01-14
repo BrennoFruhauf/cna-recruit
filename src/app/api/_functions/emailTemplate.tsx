@@ -22,7 +22,7 @@ export const emailTemplate = (form: Omit<FormType, "file">) => {
 										<div
 											style="border-style:solid;border-width:thin;border-color:#dadce0;border-radius:8px;padding:40px 20px"
 											align="center" class="m_8187743983119977419mdv2rw">
-											<img src="https://i.ibb.co/NTLxC4V/baixados.png" height="24" aria-hidden="true" style="margin-bottom:16px" alt="CNA" class="CToWUd" data-bit="iit">
+											<img src="https://recruit.cnacatalao.com.br/imgs/CNA.png" height="24" aria-hidden="true" style="margin-bottom:16px" alt="CNA" class="CToWUd" data-bit="iit">
 											<div
 												style="font-family:'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;border-bottom:thin solid #dadce0;color:rgba(0,0,0,0.87);line-height:32px;text-align:center;word-break:break-word">
 											</div>
